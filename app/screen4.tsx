@@ -1,21 +1,18 @@
-import { useRouter } from "expo-router";
-import { useState } from "react";
-import { View, Text, Button, TextInput } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { View, Text, Button } from "react-native";
 
 export default function Screen4() {
     const router = useRouter();
-    const [name, setName] = useState(''); 
-    const [age, setAge] = useState('');
-    const [tel, setTel] = useState('');
+    const params = useLocalSearchParams()
+    const {name, age, tel} = params;
 
     return (
         <View>
-            <Text>Hello World</Text>
-            <Text>Esta es la cuarta pantalla </Text>
-            <TextInput placeholder="Ingresa tu nombre" value={name} onChangeText={setName} />
-            <TextInput placeholder="Ingresa tu edad" value={age} onChangeText={setAge} keyboardType="number-pad" />
-            <TextInput placeholder="Ingresa tu telefóno" value={tel} onChangeText={setTel} keyboardType="phone-pad" />
-            <Button title="Screen 2" onPress={() => router.push(`./screen2?name=${encodeURIComponent(name && age && tel)}`)} />
+            <Text>Esta es la cuarta pantalla</Text>
+            <Text> {name ? `Mi nombre es ${name}` : "No recibí un nombre"}</Text>
+            <Text> {age ? `Mi nombre es ${age}` : "No recibí una edad"}</Text>
+            <Text> {tel ? `Mi nombre es ${tel}` : "No recibí un telefóno"}</Text>
+            <Button title="Screen 3" onPress={() => router.back()} />
         </View>
     )
 }
