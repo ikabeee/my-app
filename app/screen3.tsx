@@ -4,18 +4,26 @@ import { View, Text, Button, TextInput } from "react-native";
 
 export default function Screen3() {
     const router = useRouter();
-    const [name, setName] = useState(''); 
-    const [age, setAge] = useState('');
-    const [tel, setTel] = useState('');
+    const [form, setForm] = useState({
+        name: "",
+        age: "",
+        tel: "",
+    });
+    const handleForm = (data: object) => {
+        setForm((prev)=>({...prev, ...data}))
+    }
 
-    return (
-        <View>
-            <Text>Hello World</Text>
-            <Text>Esta es la primera pantalla </Text>
-            <TextInput placeholder="Ingresa tu nombre" value={name} onChangeText={setName} />
-            <TextInput placeholder="Ingresa tu edad" value={age} onChangeText={setAge} keyboardType="number-pad" />
-            <TextInput placeholder="Ingresa tu telefóno" value={tel} onChangeText={setTel} keyboardType="phone-pad" />
-            <Button title="Screen 2" onPress={() => router.push(`/screen2?name=${encodeURIComponent(name && age && tel)}`)} />
-        </View>
-    )
+return (
+    <View>
+        <Text>Hello World</Text>
+        <Text>Esta es la tercera pantalla </Text>
+        <TextInput placeholder="Ingresa tu nombre" value={form.name} onChangeText={((text)=>handleForm({name: text}))} />
+        <TextInput placeholder="Ingresa tu edad" value={form.age} onChangeText={((text)=>handleForm({age: text}))} keyboardType="number-pad" />
+        <TextInput placeholder="Ingresa tu telefóno" value={form.tel} onChangeText={((text)=>handleForm({tel: text}))} keyboardType="phone-pad" />
+        <Button title="Screen 4" onPress={() => router.push({
+            pathname: "./screen4",
+            params: form,
+        })} />
+    </View>
+)
 }
