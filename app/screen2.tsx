@@ -11,6 +11,7 @@ export default function Screen2() {
             <Text> {age ? `Mi nombre es ${age}` : "No recibí una edad"}</Text>
             <Text> {tel ? `Mi nombre es ${tel}` : "No recibí un telefóno"}</Text>
             <Button title="Screen 1" onPress={() => router.back()} />
+            <Button title="Screen 3" onPress={()=> router.push(`./screen3`)}/>
         </View>
     )
 }
